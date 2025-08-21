@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>O Relicário da Floresta Sombria</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>O Relicário da Floresta Sombria</h1>
+  <div id="story">
+    <h2>Capítulo 1 – O Encontro com o Véu da Névoa</h2>
+    <p>
+      Lyra adentra a floresta ao entardecer. A névoa se adensa e você percebe dois caminhos:
+    </p>
+    <button onclick="nextChapter('light')">Seguir a trilha luminosa</button>
+    <button onclick="nextChapter('water')">Seguir o som distante de água corrente</button>
+  </div>
+  <script>
+    const storyDiv = document.getElementById('story');
+
+    function nextChapter(route) {
+      let html = '';
+      if (route === 'light') {
+        html = `
+        <h2>Capítulo 2A – A Fonte Dourada</h2>
+        <p>
+          A trilha leva a uma clareira com uma fonte de águas cintilantes:
+        </p>
+        <button onclick="nextChapter('drink')">Beber da água</button>
+        <button onclick="nextChapter('fill')">Encher o cantil e seguir andando</button>
+      `;
+      } else if (route === 'water') {
+        html = `
+        <h2>Capítulo 2B – O Rio Subterrâneo</h2>
+        <p>
+          Você encontra um rio que corre para dentro de uma caverna:
+        </p>
+        <button onclick="nextChapter('cave')">Entrar na caverna</button>
+        <button onclick="nextChapter('riverbank')">Seguir o rio pela margem</button>
+      `;
+      } else if (route === 'drink') {
+        html = `
+        <h2>Capítulo 3 – A Câmara do Relicário (curso de bebedura)</h2>
+        <p>
+          Você entra na câmara, mas uma criatura sombria aparece:
+        </p>
+        <button onclick="nextChapter('fight')">Lutar</button>
+        <button onclick="nextChapter('talk')">Tentar conversar</button>
+      `;
+      } else if (route === 'fill') {
+        html = `
+        <h2>Capítulo 3 – A Câmara do Relicário (com cantil)</h2>
+        <p>
+          Você está saudável e entra na câmara com mais preparação.
+        </p>
+        <button onclick="nextChapter('fight')">Enfrentar a criatura</button>
+        <button onclick="nextChapter('sneak')">Tentar passar despercebida</button>
+      `;
+      } else if (route === 'cave') {
+        html = `
+        <h2>Capítulo 3 – Caverna Perigosa</h2>
+        <p>
+          Você está cercada por armadilhas:
+        </p>
+        <button onclick="nextChapter('disable')">Desarmar</button>
+        <button onclick="nextChapter('dash')">Tentar passar correndo</button>
+      `;
+      } else if (route === 'riverbank') {
+        html = `
+        <h2>Capítulo 3 – Passagem Oculta</h2>
+        <p>
+          Você descobre uma passagem escondida:
+        </p>
+        <button onclick="nextChapter('wait')">Esperar silêncio total</button>
+        <button onclick="nextChapter('advance')">Avançar com cautela</button>
+      `;
+      } else {
+        let ending = '';
+        switch (route) {
+          case 'fight':
+            ending = 'Você derrota ou afasta a criatura — e recupera o Relicário. Fim da jornada!';
+            break;
+          case 'talk':
+            ending = 'Você convence a criatura a deixar você com o Relicário em paz. Uma aliada improvável!';
+            break;
+          case 'sneak':
+            ending = 'Você se move silenciosamente, pega o relicário sem ser vista e sai com sucesso.';
+            break;
+          case 'disable':
+            ending = 'Você desarma as armadilhas e alcança o relicário de forma segura.';
+            break;
+          case 'dash':
+            ending = 'Você corre e escapa — mas é ferida e não consegue o relicário. Sobrevive, mas sem glória.';
+            break;
+          case 'wait':
+            ending = 'Você espera e percebe que está completamente só… o caminho está livre para prosseguir.';
+            break;
+          case 'advance':
+            ending = 'Você avança com cautela e encontra o relicário — surpreendentemente intacto.';
+            break;
+          default:
+            ending = 'Fim inesperado da jornada.';
+        }
+        html = `<h2>Final</h2><p>${ending}</p>`;
+      }
+
+      storyDiv.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
